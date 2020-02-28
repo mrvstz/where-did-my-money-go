@@ -12,7 +12,8 @@ services:
     ports:
       - 8080:80
     volumes:
-      - ../client:/usr/share/nginx/html
+      - ../client:/etc/nginx/html:ro
+      - ./conf.d/:/etc/nginx/conf.d:ro
 
 volumes:
   mongodb_data_container:
