@@ -50,6 +50,7 @@ public class ExpenseService {
         expenseModel.setTimestamp(Instant.now());
 
         expenseRepository.insert(expenseModel);
+        log.info("Expense saved");
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
