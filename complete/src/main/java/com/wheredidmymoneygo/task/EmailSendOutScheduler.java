@@ -5,6 +5,7 @@ import com.wheredidmymoneygo.dto.Expense;
 import com.wheredidmymoneygo.dto.ExpenseStatitic;
 import com.wheredidmymoneygo.service.ExpenseService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @Component
 @AllArgsConstructor
+@Slf4j
 public class EmailSendOutScheduler {
 
     private ExpenseService expenseService;
@@ -47,7 +49,7 @@ public class EmailSendOutScheduler {
 
         javaMailSender.send(msg);
 
-        System.out.println("SEND OUT at nanoTime: " + System.nanoTime());
+        log.info("SEND OUT at nanoTime: " + System.nanoTime());
     }
 
     private void buildHtmlTable(ExpenseStatitic expenseStatitic, StringBuilder textBuilder) {

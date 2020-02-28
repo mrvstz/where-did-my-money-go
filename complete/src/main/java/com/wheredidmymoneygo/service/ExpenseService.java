@@ -10,6 +10,7 @@ import com.wheredidmymoneygo.model.WayMoneySpentEnum;
 import com.wheredidmymoneygo.repository.CategoryRepository;
 import com.wheredidmymoneygo.repository.ExpenseRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class ExpenseService {
 
     private ExpenseRepository expenseRepository;
@@ -34,7 +36,7 @@ public class ExpenseService {
         try {
             buildCategoryWrapper(expense, expenseModel);
         } catch (Exception e) {
-            System.err.println("Category doesn't exists. Needs to be created first. Category: " + expense.getCategory());
+            log.error("Category doesn't exists. Needs to be created first. Category: " + expense.getCategory());
             return new ResponseEntity("Category doesn't exist", HttpStatus.BAD_REQUEST);
         }
 
@@ -42,7 +44,7 @@ public class ExpenseService {
             WayMoneySpentEnum wayMoneySpentEnum = WayMoneySpentEnum.valueOf(expense.getWayMoneySpent());
             expenseModel.setWayMoneySpent(wayMoneySpentEnum);
         } catch (IllegalArgumentException e) {
-            System.err.println("Way Money Spend value not in enum: " + expense.getWayMoneySpent());
+            log.error("Way Money Spend value not in enum: " + expense.getWayMoneySpent());
             return new ResponseEntity("Way money spend is not defined. Use paypal, bar or card", HttpStatus.BAD_REQUEST);
         }
         expenseModel.setTimestamp(Instant.now());

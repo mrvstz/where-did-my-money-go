@@ -106,10 +106,11 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
     //get all Expensen //all expenses
     //Get all Expenses in Timespan //all expenses this week/last week/month/year
     //Get expense Statitic //statistic this week/ last week/month/year
+    var url = 'http://localhost:8081';
       if(cmd && cmd == 'all' && args[0] && args[0] == "expenses") {
         if(!args[1]) {
           $.ajax( {
-            url:'http://localhost:8081/expense/allExpenses',
+            url: url + '/expense/allExpenses',
             type:"GET",
             headers: {
               "Access-Control-Allow-Header":"x-requested-with",
@@ -140,7 +141,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
                 var monday = getMonday(new Date());
                 var today = new Date();
                 $.ajax( {
-                  url:'http://localhost:8081/expense?from=' + monday.toISOString() + '&till=' + today.toISOString(),
+                  url: url + '/expense?from=' + monday.toISOString() + '&till=' + today.toISOString(),
                   type:"GET",
                   headers: {
                     "Access-Control-Allow-Header":"x-requested-with",
@@ -168,7 +169,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
                 var firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
                 var today = new Date();
                 $.ajax( {
-                  url:'http://localhost:8081/expense?from=' + firstDayOfMonth.toISOString() + '&till=' + today.toISOString(),
+                  url: url + '/expense?from=' + firstDayOfMonth.toISOString() + '&till=' + today.toISOString(),
                   type:"GET",
                   headers: {
                     "Access-Control-Allow-Header":"x-requested-with",
@@ -195,7 +196,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
                 var firstDayOfYear = new Date(new Date().getFullYear(), 0, 1);
                 var today = new Date();
                 $.ajax( {
-                  url:'http://localhost:8081/expense?from=' + firstDayOfYear.toISOString() + '&till=' + today.toISOString(),
+                  url: url + '1/expense?from=' + firstDayOfYear.toISOString() + '&till=' + today.toISOString(),
                   type:"GET",
                   headers: {
                     "Access-Control-Allow-Header":"x-requested-with",
@@ -236,7 +237,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           }
 
           $.ajax( {
-            url:'http://localhost:8081/expense',
+            url: url + '/expense',
             type:"POST",
             headers: {
               "Access-Control-Allow-Header":"x-requested-with",
@@ -269,7 +270,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
                   var monday = getMonday(new Date());
                   var today = new Date();
                   $.ajax( {
-                    url:'http://localhost:8081/expense/statistic?from=' + monday.toISOString() + '&till=' + today.toISOString(),
+                    url: url + '/expense/statistic?from=' + monday.toISOString() + '&till=' + today.toISOString(),
                     type:"GET",
                     headers: {
                       "Access-Control-Allow-Header":"x-requested-with",
@@ -289,7 +290,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
                   var firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
                   var today = new Date();
                   $.ajax( {
-                    url:'http://localhost:8081/expense/statistic?from=' + firstDayOfMonth.toISOString() + '&till=' + today.toISOString(),
+                    url: url + '/expense/statistic?from=' + firstDayOfMonth.toISOString() + '&till=' + today.toISOString(),
                     type:"GET",
                     headers: {
                       "Access-Control-Allow-Header":"x-requested-with",
@@ -308,7 +309,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
                   var firstDayOfYear = new Date(new Date().getFullYear(), 0, 1);
                   var today = new Date();
                   $.ajax( {
-                    url:'http://localhost:8081/expense/statistic?from=' + firstDayOfYear.toISOString() + '&till=' + today.toISOString(),
+                    url: url + '/expense/statistic?from=' + firstDayOfYear.toISOString() + '&till=' + today.toISOString(),
                     type:"GET",
                     headers: {
                       "Access-Control-Allow-Header":"x-requested-with",
@@ -335,7 +336,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           if(args[1].toLowerCase() && args[2]) {
 
             $.ajax( {
-              url:'http://localhost:8081/category',
+              url:url + '/category',
               type:"POST",
               headers: {
                 "Access-Control-Allow-Header":"x-requested-with",
@@ -359,7 +360,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           if(args[1].toLowerCase() && args[2]) {
 
             $.ajax( {
-              url:'http://localhost:8081/category',
+              url:url + '/category',
               type:"PUT",
               headers: {
                 "Access-Control-Allow-Header":"x-requested-with",
@@ -383,7 +384,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           if(args[1].toLowerCase()) {
 
             $.ajax( {
-              url:'http://localhost:8081/category/' + args[1],
+              url:url + '/category/' + args[1],
               type:"DELETE",
               headers: {
                 "Access-Control-Allow-Header":"x-requested-with",
@@ -404,7 +405,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
         case 'all': 
         if(args[0].toLowerCase() == 'categories') {
           $.ajax( {
-            url:'http://localhost:8081/category/allCategories',
+            url:url + '/category/allCategories',
             type:"GET",
             headers: {
               "Access-Control-Allow-Header":"x-requested-with",

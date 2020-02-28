@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.time.Instant;
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/expense")
